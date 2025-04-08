@@ -28,7 +28,7 @@ simulate_hmm <- function(pi, A, B, n_obs){
     # emission
     x[i] <- sample(1:K, 1, prob = B[z[i], ])
   }
-  return(list("x" = x,
+  return(list("x" = x - 1,
               "z" = z))
 }
 

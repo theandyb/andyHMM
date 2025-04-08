@@ -209,7 +209,7 @@ arma::mat gamma(const arma::vec& initial_probs,
 //' @param emission_matrix NxK matrix of emission probabilities
 //' @param observations vector of observed variable observations
 //' @return A NxT matrix of backward probabilities
-// [[Rcpp::export]]
+ // [[Rcpp::export]]
 arma::mat gamma_old(const arma::vec& initial_probs,
                 const arma::mat& transition_matrix,
                 const arma::mat& emission_matrix,

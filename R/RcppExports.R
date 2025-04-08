@@ -11,7 +11,7 @@
 #' @param observations vector of observed variable observations
 #' @return A NxT matrix of forward probabilities
 forward <- function(initial_probs, transition_matrix, emission_matrix, observations) {
-    .Call('_andyHMM_forward', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_matrix, observations)
+    .Call(`_andyHMM_forward`, initial_probs, transition_matrix, emission_matrix, observations)
 }
 
 #' function for computing forward probabilities (log scale)
@@ -24,7 +24,7 @@ forward <- function(initial_probs, transition_matrix, emission_matrix, observati
 #' @param observations vector of observed variable observations
 #' @return A NxT matrix of forward probabilities
 forward_log <- function(initial_probs, transition_matrix, emission_matrix, observations) {
-    .Call('_andyHMM_forward_log', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_matrix, observations)
+    .Call(`_andyHMM_forward_log`, initial_probs, transition_matrix, emission_matrix, observations)
 }
 
 #' function for computing backward probabilities
@@ -37,7 +37,7 @@ forward_log <- function(initial_probs, transition_matrix, emission_matrix, obser
 #' @param observations vector of observed variable observations
 #' @return A NxT matrix of backward probabilities
 backward <- function(initial_probs, transition_matrix, emission_matrix, observations) {
-    .Call('_andyHMM_backward', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_matrix, observations)
+    .Call(`_andyHMM_backward`, initial_probs, transition_matrix, emission_matrix, observations)
 }
 
 #' function for computing backward probabilities (log scale)
@@ -50,7 +50,7 @@ backward <- function(initial_probs, transition_matrix, emission_matrix, observat
 #' @param observations vector of observed variable observations
 #' @return A NxT matrix of backward probabilities
 backward_log <- function(initial_probs, transition_matrix, emission_matrix, observations) {
-    .Call('_andyHMM_backward_log', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_matrix, observations)
+    .Call(`_andyHMM_backward_log`, initial_probs, transition_matrix, emission_matrix, observations)
 }
 
 #' function for computing gamma values
@@ -63,7 +63,7 @@ backward_log <- function(initial_probs, transition_matrix, emission_matrix, obse
 #' @param observations vector of observed variable observations
 #' @return A NxT matrix of gamma
 gamma <- function(initial_probs, transition_matrix, emission_matrix, observations) {
-    .Call('_andyHMM_gamma', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_matrix, observations)
+    .Call(`_andyHMM_gamma`, initial_probs, transition_matrix, emission_matrix, observations)
 }
 
 #' function for computing gamma values
@@ -75,7 +75,7 @@ gamma <- function(initial_probs, transition_matrix, emission_matrix, observation
 #' @param observations vector of observed variable observations
 #' @return A NxT matrix of backward probabilities
 gamma_old <- function(initial_probs, transition_matrix, emission_matrix, observations) {
-    .Call('_andyHMM_gamma_old', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_matrix, observations)
+    .Call(`_andyHMM_gamma_old`, initial_probs, transition_matrix, emission_matrix, observations)
 }
 
 #' function for computing xi matrices
@@ -87,7 +87,7 @@ gamma_old <- function(initial_probs, transition_matrix, emission_matrix, observa
 #' @param observations vector of observed variable observations
 #' @return A NxNxT tensor of xi values
 xi <- function(initial_probs, transition_matrix, emission_matrix, observations) {
-    .Call('_andyHMM_xi', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_matrix, observations)
+    .Call(`_andyHMM_xi`, initial_probs, transition_matrix, emission_matrix, observations)
 }
 
 #' function for computing updated HMM parameters
@@ -100,7 +100,7 @@ xi <- function(initial_probs, transition_matrix, emission_matrix, observations) 
 #' @return list with updated parameters
 #' @export
 update_parameters <- function(initial_probs, transition_matrix, emission_matrix, observations) {
-    .Call('_andyHMM_update_parameters', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_matrix, observations)
+    .Call(`_andyHMM_update_parameters`, initial_probs, transition_matrix, emission_matrix, observations)
 }
 
 #' @name forward_algorithm
@@ -112,7 +112,7 @@ update_parameters <- function(initial_probs, transition_matrix, emission_matrix,
 #' @return Model likelihood for given data
 #' @export
 forward_algorithm <- function(initial_probs, transition_matrix, emission_matrix, observations) {
-    .Call('_andyHMM_forward_algorithm', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_matrix, observations)
+    .Call(`_andyHMM_forward_algorithm`, initial_probs, transition_matrix, emission_matrix, observations)
 }
 
 #' @name viterbi_
@@ -124,7 +124,7 @@ forward_algorithm <- function(initial_probs, transition_matrix, emission_matrix,
 #' @return most likely sequence of hidden states
 #' @export
 viterbi <- function(initial_probs, transition_matrix, emission_probabilities, observations) {
-    .Call('_andyHMM_viterbi', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_probabilities, observations)
+    .Call(`_andyHMM_viterbi`, initial_probs, transition_matrix, emission_probabilities, observations)
 }
 
 #' @name viterbi_log
@@ -136,6 +136,6 @@ viterbi <- function(initial_probs, transition_matrix, emission_probabilities, ob
 #' @return most likely sequence of hidden states
 #' @export
 viterbi_log <- function(initial_probs, transition_matrix, emission_probabilities, observations) {
-    .Call('_andyHMM_viterbi_log', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_probabilities, observations)
+    .Call(`_andyHMM_viterbi_log`, initial_probs, transition_matrix, emission_probabilities, observations)
 }
 

@@ -1,4 +1,4 @@
-## usethis namespace: start
-#' @importFrom Rcpp sourceCpp
-#' @useDynLib andyHMM, .registration = TRUE
-## usethis namespace: end
+#' @useDynLib andyHMM, .registration=TRUE
+#' @importFrom Rcpp evalCpp
+#' @exportPattern "^[[:alpha:]]+"
+NULL
