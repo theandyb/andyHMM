@@ -2,8 +2,6 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -13,42 +11,24 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r echo=FALSE, results="hide", message=FALSE}
+library("badger")
+```
+
 # andyHMM
 
+
 <!-- badges: start -->
+`r badge_lifecycle(stage = "experimental")`
 <!-- badges: end -->
 
-The goal of andyHMM is to ...
+Basic implementation of the Hidden Markov Algorithms described in [Rabiner, 1989](https://ieeexplore.ieee.org/document/18626). Odds are: something in this package does not work as intended; use at your own risk. Currently only implements functions for discrete output models with time-homogeneous transition matrices; see package `depmixS4` for a more full-featured HMM suite.
 
-## Installation
+## Functions
 
-You can install the development version of andyHMM like so:
+* `simulate_hmm`: simulate sequence of observations (x) and hidden states (z) for a simple HMM defined by an initial probability vector (pi), an NxN transition matrix (A), and a NxK emission probability matrix (B)
+* `forward_algorithm`: for a given HMM and a sequence of observations, compute the likelihood of the observed sequences (integratin over the set of all possible underlying hidden states)
+* `viterbi` and `viterbi_log`: For a given HMM and sequence of observed states compute the most likely sequence of underlying hidden states. `viterbi_log` uses log-probabilities in its calculations
+* `update_parameters`: run one iteration of the Baum-Welch algorithm to update parameter estimates for a HMM
 
-``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
-```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-library(andyHMM)
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.

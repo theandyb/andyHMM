@@ -46,7 +46,7 @@ double forward_algorithm(const arma::vec& initial_probs,
 //' @title Viterbi algorithm
 //' @param initial_probs 1xN vector of initial probabilities
 //' @param transition_matrix NxN matrix of hidden state transition probabilities
-//' @param emission_matrix NxK matrix of emission probabilities
+//' @param emission_probabilities NxK matrix of emission probabilities
 //' @param observations vector of observed variable observations
 //' @return most likely sequence of hidden states
 // [[Rcpp::export]]
@@ -107,9 +107,9 @@ Rcpp::List viterbi(const arma::vec& initial_probs,
 
 //' @name viterbi_log
 //' @title Viterbi algorithm (Logarithm's version)
-//' @param initial_probs 1xN vector of initial probabilities
-//' @param transition_matrix NxN matrix of hidden state transition probabilities
-//' @param emission_matrix NxK matrix of emission probabilities
+//' @param initial_probs 1xN vector of initial probabilities 
+//' @param transition_matrix NxN matrix of hidden state transition probabilities 
+//' @param emission_probabilities NxK matrix of emission probabilities 
 //' @param observations vector of observed variable observations
 //' @return most likely sequence of hidden states
 // [[Rcpp::export]]
@@ -121,6 +121,11 @@ Rcpp::List viterbi_log(const arma::vec& initial_probs,
   int N = initial_probs.n_elem;
   int T = observations.n_elem;
 
+  // convert probabilities to log scale
+  arma::vec l_pi = arma::log(initial_probs);
+  arma::mat l_A = arma::log(transition_matrix);
+  arma::mat l_B = arma::log(emission_probabilities);
+  
   arma::ivec final_path(T);
   arma::imat phi(T, N);
   arma::mat delta(T, N);
@@ -129,7 +134,7 @@ Rcpp::List viterbi_log(const arma::vec& initial_probs,
 
   // Initialization
   for(int i = 0; i < N; ++i){
-    delta(0, i) = initial_probs(i) + emission_probabilities(i, observations(0));
+    delta(0, i) = l_pi(i) + l_B(i, observations(0));
   }
 
   // Recursion
@@ -139,8 +144,8 @@ Rcpp::List viterbi_log(const arma::vec& initial_probs,
     // Loop over hidden states
     for(int j = 0; j < N; ++j){
       // Get column from transition matrix
-      arma::colvec T_col = transition_matrix.col(j);
-      double emit = emission_probabilities(j, observations(t));
+      arma::colvec T_col = l_A.col(j);
+      double emit = l_B(j, observations(t));
       // Compute candidate values
       arma::colvec candidate_d = delta_sub + T_col + emit;
       // Find val max and location

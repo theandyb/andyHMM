@@ -12,9 +12,9 @@ viterbi(initial_probs, transition_matrix, emission_probabilities, observations)
 
 \item{transition_matrix}{NxN matrix of hidden state transition probabilities}
 
-\item{observations}{vector of observed variable observations}
+\item{emission_probabilities}{NxK matrix of emission probabilities}
 
-\item{emission_matrix}{NxK matrix of emission probabilities}
+\item{observations}{vector of observed variable observations}
 }
 \value{
 most likely sequence of hidden states

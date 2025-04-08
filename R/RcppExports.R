@@ -117,7 +117,7 @@ forward_algorithm <- function(initial_probs, transition_matrix, emission_matrix,
 #' @title Viterbi algorithm
 #' @param initial_probs 1xN vector of initial probabilities
 #' @param transition_matrix NxN matrix of hidden state transition probabilities
-#' @param emission_matrix NxK matrix of emission probabilities
+#' @param emission_probabilities NxK matrix of emission probabilities
 #' @param observations vector of observed variable observations
 #' @return most likely sequence of hidden states
 viterbi <- function(initial_probs, transition_matrix, emission_probabilities, observations) {
@@ -126,28 +126,12 @@ viterbi <- function(initial_probs, transition_matrix, emission_probabilities, ob
 
 #' @name viterbi_log
 #' @title Viterbi algorithm (Logarithm's version)
-#' @param initial_probs 1xN vector of initial probabilities
-#' @param transition_matrix NxN matrix of hidden state transition probabilities
-#' @param emission_matrix NxK matrix of emission probabilities
+#' @param initial_probs 1xN vector of initial probabilities 
+#' @param transition_matrix NxN matrix of hidden state transition probabilities 
+#' @param emission_probabilities NxK matrix of emission probabilities 
 #' @param observations vector of observed variable observations
 #' @return most likely sequence of hidden states
 viterbi_log <- function(initial_probs, transition_matrix, emission_probabilities, observations) {
     .Call('_andyHMM_viterbi_log', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_probabilities, observations)
-}
-
-rcpparma_hello_world <- function() {
-    .Call('_andyHMM_rcpparma_hello_world', PACKAGE = 'andyHMM')
-}
-
-rcpparma_outerproduct <- function(x) {
-    .Call('_andyHMM_rcpparma_outerproduct', PACKAGE = 'andyHMM', x)
-}
-
-rcpparma_innerproduct <- function(x) {
-    .Call('_andyHMM_rcpparma_innerproduct', PACKAGE = 'andyHMM', x)
-}
-
-rcpparma_bothproducts <- function(x) {
-    .Call('_andyHMM_rcpparma_bothproducts', PACKAGE = 'andyHMM', x)
 }
 
