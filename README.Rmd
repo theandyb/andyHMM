@@ -12,11 +12,24 @@ knitr::opts_chunk$set(
 ```
 
 ```{r echo=FALSE, results="hide", message=FALSE}
-library("badger")
+library(badger)
+library(hexSticker)
+
+library(showtext)
+## Loading Google fonts (http://www.google.com/fonts)
+font_add_google("Bokor", "bokor")
+## Automatically use showtext to render text for future devices
+showtext_auto()
+
+imgurl <- system.file("figures/andyHMM.png", package="andyHMM")
+sticker(imgurl, package="andyHMM", p_size=20, s_x=1, s_y=.75, s_width=.4, s_height = 0.4,
+        h_fill="grey", h_color="black", p_family = "bokor",
+        filename="inst/figures/imgfile.png")
 ```
 
 # andyHMM
 
+<img src="inst/figures/imgfile.png" height="300"/>
 
 <!-- badges: start -->
 `r badge_lifecycle(stage = "experimental")`
