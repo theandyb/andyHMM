@@ -1,0 +1,17 @@
+Package: andyHMM
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person(
+    "Andy", 
+    "Beck", 
+    email = "first.last@example.com", 
+    role  = c("aut", "cre"))
+Description: Functions for working with Hidden Markov Models. Based on that paper from 1989.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    Rcpp
+LinkingTo: Rcpp, RcppArmadillo
