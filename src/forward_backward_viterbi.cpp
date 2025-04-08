@@ -11,6 +11,7 @@
 //' @param emission_matrix NxK matrix of emission probabilities
 //' @param observations vector of observed variable observations
 //' @return Model likelihood for given data
+//' @export
 // [[Rcpp::export]]
 double forward_algorithm(const arma::vec& initial_probs,
                          const arma::mat& transition_matrix,
@@ -49,6 +50,7 @@ double forward_algorithm(const arma::vec& initial_probs,
 //' @param emission_probabilities NxK matrix of emission probabilities
 //' @param observations vector of observed variable observations
 //' @return most likely sequence of hidden states
+//' @export
 // [[Rcpp::export]]
 Rcpp::List viterbi(const arma::vec& initial_probs,
                    const arma::mat& transition_matrix,
@@ -112,6 +114,7 @@ Rcpp::List viterbi(const arma::vec& initial_probs,
 //' @param emission_probabilities NxK matrix of emission probabilities 
 //' @param observations vector of observed variable observations
 //' @return most likely sequence of hidden states
+//' @export
 // [[Rcpp::export]]
 Rcpp::List viterbi_log(const arma::vec& initial_probs,
                    const arma::mat& transition_matrix,

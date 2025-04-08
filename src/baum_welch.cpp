@@ -274,6 +274,7 @@ arma::cube xi(const arma::vec& initial_probs,
 //' @param emission_matrix NxK matrix of emission probabilities
 //' @param observations vector of observed variable observations
 //' @return list with updated parameters
+//' @export
 // [[Rcpp::export]]
 Rcpp::List update_parameters(const arma::vec& initial_probs,
                              const arma::mat& transition_matrix,

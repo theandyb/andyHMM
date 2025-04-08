@@ -32,25 +32,3 @@ simulate_hmm <- function(pi, A, B, n_obs){
               "z" = z))
 }
 
-# # simulation
-#
-# initial_prob <- c(0.1, 0.4, 0.5)
-# emission <- matrix(c(0.8, 0.1, 0.1,
-#                      0.4, 0.4, 0.2,
-#                      0.1, 0.3, 0.6), nrow = 3, byrow = T)
-# transition <- matrix(c(0.6, 0.2, 0.2,
-#                        0.05, 0.8, 0.15,
-#                        0.05, 0.2, 0.75), nrow = 3, byrow = T)
-#
-# simulation <- simulate_hmm(initial_prob, transition, emission, 100)
-#
-#
-# update_parameters(initial_prob, transition, emission, simulation$x - 1)
-#
-# for(i in 1:10){
-#   new_estimates <- update_parameters(initial_probabilities, transition_matrix, emission_matrix, observations)
-#
-#   initial_probabilities <- new_estimates$pi
-#   transition_matrix <- new_estimates$A
-#   emission_matrix <- new_estimates$B
-# }

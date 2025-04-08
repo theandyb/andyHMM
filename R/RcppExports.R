@@ -98,6 +98,7 @@ xi <- function(initial_probs, transition_matrix, emission_matrix, observations) 
 #' @param emission_matrix NxK matrix of emission probabilities
 #' @param observations vector of observed variable observations
 #' @return list with updated parameters
+#' @export
 update_parameters <- function(initial_probs, transition_matrix, emission_matrix, observations) {
     .Call('_andyHMM_update_parameters', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_matrix, observations)
 }
@@ -109,6 +110,7 @@ update_parameters <- function(initial_probs, transition_matrix, emission_matrix,
 #' @param emission_matrix NxK matrix of emission probabilities
 #' @param observations vector of observed variable observations
 #' @return Model likelihood for given data
+#' @export
 forward_algorithm <- function(initial_probs, transition_matrix, emission_matrix, observations) {
     .Call('_andyHMM_forward_algorithm', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_matrix, observations)
 }
@@ -120,6 +122,7 @@ forward_algorithm <- function(initial_probs, transition_matrix, emission_matrix,
 #' @param emission_probabilities NxK matrix of emission probabilities
 #' @param observations vector of observed variable observations
 #' @return most likely sequence of hidden states
+#' @export
 viterbi <- function(initial_probs, transition_matrix, emission_probabilities, observations) {
     .Call('_andyHMM_viterbi', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_probabilities, observations)
 }
@@ -131,6 +134,7 @@ viterbi <- function(initial_probs, transition_matrix, emission_probabilities, ob
 #' @param emission_probabilities NxK matrix of emission probabilities 
 #' @param observations vector of observed variable observations
 #' @return most likely sequence of hidden states
+#' @export
 viterbi_log <- function(initial_probs, transition_matrix, emission_probabilities, observations) {
     .Call('_andyHMM_viterbi_log', PACKAGE = 'andyHMM', initial_probs, transition_matrix, emission_probabilities, observations)
 }
