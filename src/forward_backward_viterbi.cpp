@@ -3,6 +3,7 @@
 // [[Rcpp::depends(RcppArmadillo)]]
 
 #include "RcppArmadillo.h"
+#include <cmath>
 
 //' @name forward_algorithm
 //' @title Forward algorithm for likelihood computation
@@ -23,9 +24,14 @@ double forward_algorithm(const arma::vec& initial_probs,
   // Initialize the forward probabilities (alpha)
   arma::mat alpha(num_states, num_observations);
 
+  // Log transform probabilities
+  const arma::vec l_pi = arma::log(initial_probs);
+  const arma::mat l_A = arma::log(transition_matrix);
+  const arma::mat l_B = arma::log(emission_matrix);
+  
   // For the first observation
   for (int i = 0; i < num_states; ++i) {
-    alpha(i, 0) = initial_probs(i) * emission_matrix(i, observations(0));
+    alpha(i, 0) = l_pi(i) + l_B(i, observations(0));
   }
 
   // Iterate through the remaining observations
@@ -33,15 +39,79 @@ double forward_algorithm(const arma::vec& initial_probs,
     for (int j = 0; j < num_states; ++j) {
       double sum = 0.0;
       for (int i = 0; i < num_states; ++i) {
-        sum += alpha(i, t - 1) * transition_matrix(i, j);
+        sum += std::exp( alpha(i, t - 1) + l_A(i, j) );
       }
-      alpha(j, t) = sum * emission_matrix(j, observations(t));
+      alpha(j, t) = std::log(sum) + l_A(j, observations(t));
     }
   }
 
+  // Take exp of alpha prior to sum
+  alpha = arma::exp(alpha);
+  
   // The likelihood is the sum of the forward probabilities at the last time step
   return arma::sum(alpha.col(num_observations - 1));
 }
+
+//' @name forward_algorithm_tensor
+//' @title Forward algorithm for likelihood computation with multiple emission and transition matrices
+//' @param initial_probs 1xN vector of initial probabilities
+//' @param transition_matrix NxNxB cube of hidden state transition probabilities
+//' @param emission_matrix NxKxB cube of emission probabilities
+//' @param observations vector of observed variable observations
+//' @param bin which bin generated each observation (pair of emission and transition matrices)
+//' @return Model likelihood for given data
+//' @export
+// [[Rcpp::export]]
+ double forward_algorithm_tensor(const arma::vec& initial_probs,
+                          const arma::cube& transition_matrix,
+                          const arma::cube& emission_matrix,
+                          const arma::ivec& observations,
+                          const arma::ivec& bin) {
+   
+   int num_states = initial_probs.n_elem;
+   int num_observations = observations.n_elem;
+   int num_bins = transition_matrix.n_slices;
+   
+   if(emission_matrix.n_slices != num_bins){
+     Rcpp::stop("Transition and emission cubes must have the same number of slices");
+   }
+   
+   if(bin.n_elem != num_observations){
+     Rcpp::stop("Bin vector must have the same number of elements as observations");
+   }
+   
+   // Initialize the forward probabilities (alpha)
+   arma::mat alpha(num_states, num_observations);
+   
+   // Log transform probabilities
+   const arma::vec l_pi = arma::log(initial_probs);
+   const arma::cube l_A = arma::log(transition_matrix);
+   const arma::cube l_B = arma::log(emission_matrix);
+   
+   // For the first observation
+   int current_bin = bin(0);
+   for (int i = 0; i < num_states; ++i) {
+     alpha(i, 0) = l_pi(i) + l_B(i, observations(0), current_bin);
+   }
+   
+   // Iterate through the remaining observations
+   for (int t = 1; t < num_observations; ++t) {
+     current_bin = bin(t);
+     for (int j = 0; j < num_states; ++j) {
+       double sum = 0.0;
+       for (int i = 0; i < num_states; ++i) {
+         sum += std::exp( alpha(i, t - 1) + l_A(i, j, current_bin) );
+       }
+       alpha(j, t) = std::log(sum) + l_A(j, observations(t), current_bin);
+     }
+   }
+   
+   // Take exp of alpha prior to sum
+   alpha = arma::exp(alpha);
+   
+   // The likelihood is the sum of the forward probabilities at the last time step
+   return arma::sum(alpha.col(num_observations - 1));
+ }
 
 //' @name viterbi
 //' @title Viterbi algorithm

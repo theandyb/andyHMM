@@ -17,3 +17,6 @@ Imports:
 LinkingTo: Rcpp, RcppArmadillo
 URL: https://github.com/theandyb/andyHMM
 BugReports: https://github.com/theandyb/andyHMM/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

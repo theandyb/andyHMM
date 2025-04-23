@@ -26,6 +26,19 @@ forward_algorithm <- function(initial_probs, transition_matrix, emission_matrix,
     .Call(`_andyHMM_forward_algorithm`, initial_probs, transition_matrix, emission_matrix, observations)
 }
 
+#' @name forward_algorithm_tensor
+#' @title Forward algorithm for likelihood computation with multiple emission and transition matrices
+#' @param initial_probs 1xN vector of initial probabilities
+#' @param transition_matrix NxNxB cube of hidden state transition probabilities
+#' @param emission_matrix NxKxB cube of emission probabilities
+#' @param observations vector of observed variable observations
+#' @param bin which bin generated each observation (pair of emission and transition matrices)
+#' @return Model likelihood for given data
+#' @export
+forward_algorithm_tensor <- function(initial_probs, transition_matrix, emission_matrix, observations, bin) {
+    .Call(`_andyHMM_forward_algorithm_tensor`, initial_probs, transition_matrix, emission_matrix, observations, bin)
+}
+
 #' @name viterbi
 #' @title Viterbi algorithm
 #' @param initial_probs 1xN vector of initial probabilities

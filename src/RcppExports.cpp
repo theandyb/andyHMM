@@ -39,6 +39,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// forward_algorithm_tensor
+double forward_algorithm_tensor(const arma::vec& initial_probs, const arma::cube& transition_matrix, const arma::cube& emission_matrix, const arma::ivec& observations, const arma::ivec& bin);
+RcppExport SEXP _andyHMM_forward_algorithm_tensor(SEXP initial_probsSEXP, SEXP transition_matrixSEXP, SEXP emission_matrixSEXP, SEXP observationsSEXP, SEXP binSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::vec& >::type initial_probs(initial_probsSEXP);
+    Rcpp::traits::input_parameter< const arma::cube& >::type transition_matrix(transition_matrixSEXP);
+    Rcpp::traits::input_parameter< const arma::cube& >::type emission_matrix(emission_matrixSEXP);
+    Rcpp::traits::input_parameter< const arma::ivec& >::type observations(observationsSEXP);
+    Rcpp::traits::input_parameter< const arma::ivec& >::type bin(binSEXP);
+    rcpp_result_gen = Rcpp::wrap(forward_algorithm_tensor(initial_probs, transition_matrix, emission_matrix, observations, bin));
+    return rcpp_result_gen;
+END_RCPP
+}
 // viterbi
 Rcpp::List viterbi(const arma::vec& initial_probs, const arma::mat& transition_matrix, const arma::mat& emission_probabilities, const arma::ivec& observations);
 RcppExport SEXP _andyHMM_viterbi(SEXP initial_probsSEXP, SEXP transition_matrixSEXP, SEXP emission_probabilitiesSEXP, SEXP observationsSEXP) {
@@ -71,6 +86,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_andyHMM_update_parameters", (DL_FUNC) &_andyHMM_update_parameters, 4},
     {"_andyHMM_forward_algorithm", (DL_FUNC) &_andyHMM_forward_algorithm, 4},
+    {"_andyHMM_forward_algorithm_tensor", (DL_FUNC) &_andyHMM_forward_algorithm_tensor, 5},
     {"_andyHMM_viterbi", (DL_FUNC) &_andyHMM_viterbi, 4},
     {"_andyHMM_viterbi_log", (DL_FUNC) &_andyHMM_viterbi_log, 4},
     {NULL, NULL, 0}
