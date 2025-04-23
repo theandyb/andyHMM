@@ -43,7 +43,7 @@ double forward_algorithm(const arma::vec& initial_probs,
   return arma::sum(alpha.col(num_observations - 1));
 }
 
-//' @name viterbi_
+//' @name viterbi
 //' @title Viterbi algorithm
 //' @param initial_probs 1xN vector of initial probabilities
 //' @param transition_matrix NxN matrix of hidden state transition probabilities
@@ -122,6 +122,7 @@ Rcpp::List viterbi_log(const arma::vec& initial_probs,
                    const arma::ivec& observations) {
 
   int N = initial_probs.n_elem;
+  int K = transition_matrix.n_cols;
   int T = observations.n_elem;
 
   // convert probabilities to log scale

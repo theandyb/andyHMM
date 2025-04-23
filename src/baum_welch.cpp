@@ -2,16 +2,6 @@
 
 #include "RcppArmadillo.h"
 
-//' function for computing forward probabilities
-//'
-//' @name forward
-//' @title function for computing forward probabilities
-//' @param initial_probs 1xN vector of initial probabilities
-//' @param transition_matrix NxN matrix of hidden state transition probabilities
-//' @param emission_matrix NxK matrix of emission probabilities
-//' @param observations vector of observed variable observations
-//' @return A NxT matrix of forward probabilities
-// [[Rcpp::export]]
 arma::mat forward(const arma::vec& initial_probs,
                   const arma::mat& transition_matrix,
                   const arma::mat& emission_matrix,
@@ -42,16 +32,6 @@ arma::mat forward(const arma::vec& initial_probs,
   return alpha;
 }
 
-//' function for computing forward probabilities (log scale)
-//'
-//' @name forward_log
-//' @title function for computing forward probabilities (log scale)
-//' @param initial_probs 1xN vector of initial probabilities
-//' @param transition_matrix NxN matrix of hidden state transition probabilities
-//' @param emission_matrix NxK matrix of emission probabilities
-//' @param observations vector of observed variable observations
-//' @return A NxT matrix of forward probabilities
-// [[Rcpp::export]]
 arma::mat forward_log(const arma::vec& initial_probs,
                   const arma::mat& transition_matrix,
                   const arma::mat& emission_matrix,
@@ -88,16 +68,6 @@ arma::mat forward_log(const arma::vec& initial_probs,
   return alpha;
 }
 
-//' function for computing backward probabilities
-//'
-//' @name backward
-//' @title function for computing backward probabilities
-//' @param initial_probs 1xN vector of initial probabilities
-//' @param transition_matrix NxN matrix of hidden state transition probabilities
-//' @param emission_matrix NxK matrix of emission probabilities
-//' @param observations vector of observed variable observations
-//' @return A NxT matrix of backward probabilities
-// [[Rcpp::export]]
 arma::mat backward(const arma::vec& initial_probs,
                    const arma::mat& transition_matrix,
                    const arma::mat& emission_matrix,
@@ -127,16 +97,6 @@ arma::mat backward(const arma::vec& initial_probs,
   return beta;
 }
 
-//' function for computing backward probabilities (log scale)
-//'
-//' @name backward_log
-//' @title function for computing backward probabilities (log scale)
-//' @param initial_probs 1xN vector of initial probabilities
-//' @param transition_matrix NxN matrix of hidden state transition probabilities
-//' @param emission_matrix NxK matrix of emission probabilities
-//' @param observations vector of observed variable observations
-//' @return A NxT matrix of backward probabilities
-// [[Rcpp::export]]
 arma::mat backward_log(const arma::vec& initial_probs,
                    const arma::mat& transition_matrix,
                    const arma::mat& emission_matrix,
@@ -172,16 +132,6 @@ arma::mat backward_log(const arma::vec& initial_probs,
   return beta;
 }
 
-//' function for computing gamma values
-//'
-//' @name gamma
-//' @title function for computing gamma values
-//' @param initial_probs 1xN vector of initial probabilities
-//' @param transition_matrix NxN matrix of hidden state transition probabilities
-//' @param emission_matrix NxK matrix of emission probabilities
-//' @param observations vector of observed variable observations
-//' @return A NxT matrix of gamma
-// [[Rcpp::export]]
 arma::mat gamma(const arma::vec& initial_probs,
                 const arma::mat& transition_matrix,
                 const arma::mat& emission_matrix,
@@ -201,15 +151,6 @@ arma::mat gamma(const arma::vec& initial_probs,
   return gamma;
 }
 
-//' function for computing gamma values
-//'
-//' @name gamma_old
-//' @param initial_probs 1xN vector of initial probabilities
-//' @param transition_matrix NxN matrix of hidden state transition probabilities
-//' @param emission_matrix NxK matrix of emission probabilities
-//' @param observations vector of observed variable observations
-//' @return A NxT matrix of backward probabilities
- // [[Rcpp::export]]
 arma::mat gamma_old(const arma::vec& initial_probs,
                 const arma::mat& transition_matrix,
                 const arma::mat& emission_matrix,
@@ -229,15 +170,6 @@ arma::mat gamma_old(const arma::vec& initial_probs,
   return gamma;
 }
 
-//' function for computing xi matrices
-//'
-//' @name xi
-//' @param initial_probs 1xN vector of initial probabilities
-//' @param transition_matrix NxN matrix of hidden state transition probabilities
-//' @param emission_matrix NxK matrix of emission probabilities
-//' @param observations vector of observed variable observations
-//' @return A NxNxT tensor of xi values
-// [[Rcpp::export]]
 arma::cube xi(const arma::vec& initial_probs,
              const arma::mat& transition_matrix,
              const arma::mat& emission_matrix,

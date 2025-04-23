@@ -11,104 +11,6 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// forward
-arma::mat forward(const arma::vec& initial_probs, const arma::mat& transition_matrix, const arma::mat& emission_matrix, const arma::ivec& observations);
-RcppExport SEXP _andyHMM_forward(SEXP initial_probsSEXP, SEXP transition_matrixSEXP, SEXP emission_matrixSEXP, SEXP observationsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type initial_probs(initial_probsSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type transition_matrix(transition_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type emission_matrix(emission_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type observations(observationsSEXP);
-    rcpp_result_gen = Rcpp::wrap(forward(initial_probs, transition_matrix, emission_matrix, observations));
-    return rcpp_result_gen;
-END_RCPP
-}
-// forward_log
-arma::mat forward_log(const arma::vec& initial_probs, const arma::mat& transition_matrix, const arma::mat& emission_matrix, const arma::ivec& observations);
-RcppExport SEXP _andyHMM_forward_log(SEXP initial_probsSEXP, SEXP transition_matrixSEXP, SEXP emission_matrixSEXP, SEXP observationsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type initial_probs(initial_probsSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type transition_matrix(transition_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type emission_matrix(emission_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type observations(observationsSEXP);
-    rcpp_result_gen = Rcpp::wrap(forward_log(initial_probs, transition_matrix, emission_matrix, observations));
-    return rcpp_result_gen;
-END_RCPP
-}
-// backward
-arma::mat backward(const arma::vec& initial_probs, const arma::mat& transition_matrix, const arma::mat& emission_matrix, const arma::ivec& observations);
-RcppExport SEXP _andyHMM_backward(SEXP initial_probsSEXP, SEXP transition_matrixSEXP, SEXP emission_matrixSEXP, SEXP observationsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type initial_probs(initial_probsSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type transition_matrix(transition_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type emission_matrix(emission_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type observations(observationsSEXP);
-    rcpp_result_gen = Rcpp::wrap(backward(initial_probs, transition_matrix, emission_matrix, observations));
-    return rcpp_result_gen;
-END_RCPP
-}
-// backward_log
-arma::mat backward_log(const arma::vec& initial_probs, const arma::mat& transition_matrix, const arma::mat& emission_matrix, const arma::ivec& observations);
-RcppExport SEXP _andyHMM_backward_log(SEXP initial_probsSEXP, SEXP transition_matrixSEXP, SEXP emission_matrixSEXP, SEXP observationsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type initial_probs(initial_probsSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type transition_matrix(transition_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type emission_matrix(emission_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type observations(observationsSEXP);
-    rcpp_result_gen = Rcpp::wrap(backward_log(initial_probs, transition_matrix, emission_matrix, observations));
-    return rcpp_result_gen;
-END_RCPP
-}
-// gamma
-arma::mat gamma(const arma::vec& initial_probs, const arma::mat& transition_matrix, const arma::mat& emission_matrix, const arma::ivec& observations);
-RcppExport SEXP _andyHMM_gamma(SEXP initial_probsSEXP, SEXP transition_matrixSEXP, SEXP emission_matrixSEXP, SEXP observationsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type initial_probs(initial_probsSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type transition_matrix(transition_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type emission_matrix(emission_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type observations(observationsSEXP);
-    rcpp_result_gen = Rcpp::wrap(gamma(initial_probs, transition_matrix, emission_matrix, observations));
-    return rcpp_result_gen;
-END_RCPP
-}
-// gamma_old
-arma::mat gamma_old(const arma::vec& initial_probs, const arma::mat& transition_matrix, const arma::mat& emission_matrix, const arma::ivec& observations);
-RcppExport SEXP _andyHMM_gamma_old(SEXP initial_probsSEXP, SEXP transition_matrixSEXP, SEXP emission_matrixSEXP, SEXP observationsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type initial_probs(initial_probsSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type transition_matrix(transition_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type emission_matrix(emission_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type observations(observationsSEXP);
-    rcpp_result_gen = Rcpp::wrap(gamma_old(initial_probs, transition_matrix, emission_matrix, observations));
-    return rcpp_result_gen;
-END_RCPP
-}
-// xi
-arma::cube xi(const arma::vec& initial_probs, const arma::mat& transition_matrix, const arma::mat& emission_matrix, const arma::ivec& observations);
-RcppExport SEXP _andyHMM_xi(SEXP initial_probsSEXP, SEXP transition_matrixSEXP, SEXP emission_matrixSEXP, SEXP observationsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type initial_probs(initial_probsSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type transition_matrix(transition_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type emission_matrix(emission_matrixSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type observations(observationsSEXP);
-    rcpp_result_gen = Rcpp::wrap(xi(initial_probs, transition_matrix, emission_matrix, observations));
-    return rcpp_result_gen;
-END_RCPP
-}
 // update_parameters
 Rcpp::List update_parameters(const arma::vec& initial_probs, const arma::mat& transition_matrix, const arma::mat& emission_matrix, const arma::ivec& observations);
 RcppExport SEXP _andyHMM_update_parameters(SEXP initial_probsSEXP, SEXP transition_matrixSEXP, SEXP emission_matrixSEXP, SEXP observationsSEXP) {
@@ -167,13 +69,6 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_andyHMM_forward", (DL_FUNC) &_andyHMM_forward, 4},
-    {"_andyHMM_forward_log", (DL_FUNC) &_andyHMM_forward_log, 4},
-    {"_andyHMM_backward", (DL_FUNC) &_andyHMM_backward, 4},
-    {"_andyHMM_backward_log", (DL_FUNC) &_andyHMM_backward_log, 4},
-    {"_andyHMM_gamma", (DL_FUNC) &_andyHMM_gamma, 4},
-    {"_andyHMM_gamma_old", (DL_FUNC) &_andyHMM_gamma_old, 4},
-    {"_andyHMM_xi", (DL_FUNC) &_andyHMM_xi, 4},
     {"_andyHMM_update_parameters", (DL_FUNC) &_andyHMM_update_parameters, 4},
     {"_andyHMM_forward_algorithm", (DL_FUNC) &_andyHMM_forward_algorithm, 4},
     {"_andyHMM_viterbi", (DL_FUNC) &_andyHMM_viterbi, 4},

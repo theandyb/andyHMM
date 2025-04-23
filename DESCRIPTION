@@ -1,11 +1,11 @@
 Package: andyHMM
 Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Version: 0.0.1.0000
 Authors@R: 
     person(
     "Andy", 
     "Beck", 
-    email = "first.last@example.com", 
+    email = "beckandy@umich.edu", 
     role  = c("aut", "cre"))
 Description: Functions for working with Hidden Markov Models. Based on that paper from 1989.
 License: GPL (>= 3)
